@@ -1,5 +1,6 @@
 package com.example.zzyzzy.semiprojectv2.service;
 
+import com.example.zzyzzy.semiprojectv2.domain.Member;
 import com.example.zzyzzy.semiprojectv2.domain.User;
 import com.example.zzyzzy.semiprojectv2.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User loginUser(User user) {
-        return null;
+        User findUser = userRepository.findByUserid(user.getUserid());
+
+        if (findUser == null || !findUser.getPasswd().equals(user.getPasswd())) {
+            throw new IllegalStateException("아이디나 비밀번호가 일치하지 않습니다!!");
+        }
+
+        return findUser;
     }
 }
