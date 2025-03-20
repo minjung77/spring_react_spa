@@ -13,7 +13,7 @@ const processLoginok = async (values) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(values)
-    }).then(await response => {
+    }).then(async response => {
         if(response.ok){
             alert('로그인 성공');
             location.href="/member/myinfo";
