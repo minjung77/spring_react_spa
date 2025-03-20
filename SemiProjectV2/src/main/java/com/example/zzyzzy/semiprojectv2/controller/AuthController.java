@@ -2,7 +2,9 @@ package com.example.zzyzzy.semiprojectv2.controller;
 
 import com.example.zzyzzy.semiprojectv2.domain.Member;
 import com.example.zzyzzy.semiprojectv2.domain.MemberDTO;
+import com.example.zzyzzy.semiprojectv2.domain.User;
 import com.example.zzyzzy.semiprojectv2.service.MemberService;
+import com.example.zzyzzy.semiprojectv2.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +19,17 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final MemberService memberService;
+    private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> joinok(@RequestBody MemberDTO member) {
+    public ResponseEntity<?> joinok(@RequestBody User user) {
         ResponseEntity<?> response = ResponseEntity.internalServerError().build();
 
-        log.info("submit된 회원 정보 : {}", member);
+        log.info("submit된 회원 정보 : {}", user);
 
         try {
             // 정상 처리시 상태코드 200으로 응답
-            memberService.newMember(member);
+            userService.newUser(user);
             response = ResponseEntity.ok().build();
         } catch (IllegalStateException e) {
             response = ResponseEntity.badRequest().body(e.getMessage());
