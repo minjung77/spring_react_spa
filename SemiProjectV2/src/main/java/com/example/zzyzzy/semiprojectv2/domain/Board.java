@@ -10,27 +10,28 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
-@Data
+@Table(name = "boards")
+@Data @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class User {
+public class Board {
     @Id
+    // IDENTITY, AUTO = mysql, mariadb
+    // SEQUENCE = oracle
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(nullable = false, unique = true)
+    private Long bno;
+    @Column(nullable = false)
+    private String title;
+    @Column(nullable = false)
     private String userid;
-    @Column(nullable = false)
-    private String passwd;
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false, unique = true)
-    private String email;
-    
-    //insert, update 시 해당 컬럼 제외
-    @CreationTimestamp//Timestamp와 동일한 효과
-//    @Column(insertable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime regdate;
+
+//    @Column(columnDefinition = "BIGINT default 0")
+    private int thumbs = 0;
+//    @Column(columnDefinition = "BIGINT default 0")
+    private int views = 0;
+
+    @Column(nullable = false)
+    private String contents;
 }
