@@ -16,7 +16,7 @@ const validateBoardForm = (values) => {
     return formErrors;
 }
 const processBoardok = async (formValues) => {
-    fetch('https://localhost:8080/api/board/write', {
+    fetch('http://localhost:8080/api/board/write', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(formValues)
