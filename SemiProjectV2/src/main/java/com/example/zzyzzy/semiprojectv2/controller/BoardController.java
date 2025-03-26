@@ -1,10 +1,12 @@
 package com.example.zzyzzy.semiprojectv2.controller;
 
 import com.example.zzyzzy.semiprojectv2.domain.Board;
+import com.example.zzyzzy.semiprojectv2.domain.BoardListDTO;
 import com.example.zzyzzy.semiprojectv2.repository.BoardRepository;
 import com.example.zzyzzy.semiprojectv2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +36,13 @@ public class BoardController {
         }
 
         return response;
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> list(@RequestParam (defaultValue = "1") int cpg) {
+        BoardListDTO boardListDTO = boardService.readBoard(cpg);
+
+        return new ResponseEntity<>(boardListDTO, HttpStatus.OK);
     }
 
 }
