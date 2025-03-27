@@ -43,4 +43,35 @@ public class BoardServiceImpl implements BoardService {
         return new BoardListDTO(cpg, totalItems, pageSize, boards);
     }
 
+    @Override
+    public BoardListDTO findBoard(int cpg, String findtype, String findkey) {
+        Pageable pageable = PageRequest.of(cpg, pageSize, Sort.Direction.DESC, "bno");
+        Page<BoardDTO> pageboards = null;
+
+        switch (findtype) {
+            case "title":
+                pageboards = boardRepository.findByTitleContains(pageable, findkey); break;
+            case "contents":
+                pageboards = boardRepository.findByContentsContains(pageable, findkey); break;
+            case "userid":
+                pageboards = boardRepository.findByUseridContains(pageable, findkey); break;
+            case "titconts":
+                pageboards = boardRepository.findByTitleContainsOrContentsContains(pageable, findkey, findkey); break;
+        }
+
+        List<BoardDTO> boards = pageboards.getContent();
+        int totalItems = (int) pageboards.getTotalElements();
+
+        return new BoardListDTO(cpg, totalItems, pageSize, boards);
+    }
+
+    @Override
+    public Page<BoardDTO> testReadBoard(int cpg) {
+        Pageable pageable = PageRequest.of(cpg, pageSize, Sort.Direction.DESC, "bno");
+
+        Page<BoardDTO> pageboards = boardRepository.findBy(pageable);
+
+        return pageboards;
+    }
+
 }

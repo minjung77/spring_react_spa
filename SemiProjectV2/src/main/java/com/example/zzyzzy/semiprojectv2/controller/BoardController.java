@@ -1,11 +1,13 @@
 package com.example.zzyzzy.semiprojectv2.controller;
 
 import com.example.zzyzzy.semiprojectv2.domain.Board;
+import com.example.zzyzzy.semiprojectv2.domain.BoardDTO;
 import com.example.zzyzzy.semiprojectv2.domain.BoardListDTO;
 import com.example.zzyzzy.semiprojectv2.repository.BoardRepository;
 import com.example.zzyzzy.semiprojectv2.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +48,21 @@ public class BoardController {
         BoardListDTO boardListDTO = boardService.readBoard(cpg);
 
         return new ResponseEntity<>(boardListDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/find/{cpg}/{findtype}/{findkey}")
+    public ResponseEntity<?> find(@PathVariable int cpg,
+          @PathVariable String findtype, @PathVariable String findkey) {
+        BoardListDTO boardListDTO = boardService.findBoard(cpg, findtype, findkey);
+
+        return new ResponseEntity<>(boardListDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/test/{cpg}")
+    public ResponseEntity<?> test(@PathVariable int cpg) {
+        Page<BoardDTO> pageboards = boardService.testReadBoard(cpg);
+
+        return new ResponseEntity<>(pageboards, HttpStatus.OK);
     }
 
 }
