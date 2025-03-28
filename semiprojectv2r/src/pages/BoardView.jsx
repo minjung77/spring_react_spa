@@ -92,17 +92,25 @@ const BoardView = () => {
                             (boardData.rps) && boardData.rps.map(rp => (
                                 (rp.rno === rp.ref) ?
                                     <>
-                                        <tr key={`reply-${rp.rno}`}>
-                                            <td class="text-left">${rp.userid}</td>
+                                        (<tr key={`reply-${rp.rno}`}>
+                                            <td className="text-left">{rp.userid}</td>
                                             <td>
-                                                <div class="cmtbg"><span >{rp.regdate}</span>
-                                                <span class="pushend"><a href="#" data-ref="${rp.rno}" data-bs-toggle="modal"
-                                                      data-bs-target="#cmtModal">[추가]</a> [수정] [삭제]</span></div>` : '';
-                                                <p class="py-1 pre">$rp.comments}</p></td>
-                                        </tr>;
+                                                <div className="cmtbg"><span>{rp.regdate}</span>
+                                                    <span className="pushend"><a href="#" data-ref="${rp.rno}"
+                                                      data-bs-toggle="modal" data-bs-target="#cmtModal">[추가]</a> [수정] [삭제]</span>
+                                                </div>
+                                                <p className="py-1 pre">{rp.comments}</p></td>
+                                        </tr>)
                                     </>
                                     :
-                                    ''
+                                    (<tr key={`reply-${rp.rno}`}>
+                                        <td className="text-left">&nbsp;&nbsp;</td>
+                                        <td>
+                                            <div className="rpybg"><span>{rp.userid}</span>
+                                                <span className=" pushend">{rp.regdate}</span></div>
+                                            <p className="py-1 pre">{rp.comments}</p>
+                                        </td>
+                                   </tr>)
                             ))
                         }
                         </tbody>
