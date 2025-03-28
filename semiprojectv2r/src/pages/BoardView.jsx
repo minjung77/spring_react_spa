@@ -163,7 +163,6 @@ const BoardView = () => {
                     </div>
                 </div>
             </main>
-
         </>
     );
 }

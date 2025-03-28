@@ -2,9 +2,11 @@ package com.example.zzyzzy.semiprojectv2.repository;
 
 import com.example.zzyzzy.semiprojectv2.domain.Board;
 import com.example.zzyzzy.semiprojectv2.domain.BoardDTO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 
@@ -25,5 +27,9 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     Page<BoardDTO> findByTitleContainsOrContentsContains(Pageable pageable, String fkey1, String fkey2);
 
     Board findByBno(Long bno);
+
+    @Modifying
+    @Query("update Board set views = views + 1 where bno = :bno")
+    int updateViews(@Param("bno") Long bno);
 
 }
