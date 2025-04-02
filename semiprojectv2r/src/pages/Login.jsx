@@ -15,9 +15,21 @@ const processLoginok = async (values) => {
         body: JSON.stringify(values),
     }).then(async response => {
         if (response.ok) {
-            alert('로그인 성공!!');
-            location.href="/member/myinfo";
-        } else if (response.status === 400) {
+
+            // 서버로 받은 토큰을 로컬 스토리지 안에 저장하는 로직
+            const data = await response.json();
+            console.log(data);
+
+            if (data.accessToken) {//JWT 토큰이 존재하면
+                localStorage.setItem("accessToken", data.accessToken);
+
+                alert('로그인 성공!!');
+                location.href="/member/myinfo";
+            }else {
+                alert("로그인을 다시 하세요.")
+                location.href="/member/login";
+            }
+        } else if (response.status === 401) {
             alert(await response.text());
         }
     }).catch(error => {
