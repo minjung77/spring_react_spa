@@ -13,9 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
+@CrossOrigin(origins={"http://localhost:5173", "http://localhost:3000"})
 @Slf4j
 @Controller
-@RequestMapping("/gallery")
+@RequestMapping("/api/gallery")
 @RequiredArgsConstructor
 public class GalleryController {
     private final GoogleRecaptchaService googleRecaptchaService;
@@ -35,7 +36,8 @@ public class GalleryController {
 //    RESTful API 설계에서 자원의 식별자로 사용하기에 적합
 
     @PostMapping("/write")
-    public ResponseEntity<?> writeok(Gallery gal, List<MultipartFile> ginames, @RequestParam("g-recaptcha-response") String gRrecaptchaResponse) {
+    public ResponseEntity<?> writeok(Gallery gal, List<MultipartFile> ginames,
+                                     @RequestParam("g-recaptcha-response") String gRrecaptchaResponse) {
         ResponseEntity<?> response = ResponseEntity.internalServerError().build();
         log.info("submit 된 겔러리 정보1 ::: {}", gal);
         log.info("submit 된 갤러리 정보2 ::: {}", ginames);
@@ -46,6 +48,7 @@ public class GalleryController {
             }
 
             if(galleryService.newGalleryImage(gal, ginames)){
+                log.info("aaa");
                 response = ResponseEntity.ok().build();
             }
         }catch (IllegalStateException e){
