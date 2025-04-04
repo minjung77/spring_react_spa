@@ -15,7 +15,7 @@ const Nav = () => {
                 <li className="nav-item" ><a href="/member/logout" className="nav-link">로그아웃</a></li>
                 </>)
                 :
-                (<><li className="nav-item" ><a href="/member/logout" className="nav-link">로그아웃</a></li>
+                (<><li className="nav-item" ><a href="/member/join" className="nav-link">회원가입</a></li>
                 <li className="nav-item"><a href="/member/login" className="nav-link">로그인</a></li>
                 </>)}
 
