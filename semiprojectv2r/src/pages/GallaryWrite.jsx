@@ -120,8 +120,8 @@ const GalleryWrite = () => {
                            className={`form-control h-100 ${errors.ginames ? 'is-invalid' : ''}`}
                            multiple required/>
                     <input type="hidden" name="simgname" id="simgname"/>
+                    {errors.ginames && <div className="invalid-feedback">{errors.ginames}</div>}
                 </div>
-                {errors.ginames && <div className="invalid-feedback">{errors.ginames}</div>}
 
                 <div className="my-2 d-flex justify-content-center">
                     <div className="g-recaptcha" id="recaptcha" data-sitekey={sitekey}></div>
