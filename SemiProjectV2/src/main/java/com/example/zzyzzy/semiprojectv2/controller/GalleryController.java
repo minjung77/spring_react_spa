@@ -1,6 +1,8 @@
 package com.example.zzyzzy.semiprojectv2.controller;
 
 import com.example.zzyzzy.semiprojectv2.domain.Gallery;
+import com.example.zzyzzy.semiprojectv2.service.GalleryService;
+import com.example.zzyzzy.semiprojectv2.service.GoogleRecaptchaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.List;
 @RequestMapping("/gallery")
 @RequiredArgsConstructor
 public class GalleryController {
+    private final GoogleRecaptchaService googleRecaptchaService;
+    private final GalleryService galleryService;
 //    Query String (질의문자열)
 //    URL의 ? 뒤에 key=value 형태로 데이터를 전달하는 방식
 //    ex) /users?name=John&age=30에서 name과 age가 Query String 매개변수

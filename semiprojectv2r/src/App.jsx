@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Myinfo from "./pages/Myinfo";
 import BoardList from "./pages/BoardList";
 import BoardWrite from "./pages/BoardWrite";
+import GalleryWrite from "./pages/GallaryWrite";
 import NotFound from "./pages/NotFound";
 import './styles/App.css'
 import BoardView from "./pages/BoardView.jsx";
@@ -28,6 +29,7 @@ function App() {
         <Route path="/board/list/:cpg" element={<BoardList />} />
         <Route path="/board/find/:ftype/:fkey/:cpg" element={<BoardList />} />
         <Route path="/board/write" element={<BoardWrite />} />
+        <Route path="/gallery/write" element={<GalleryWrite />} />
         <Route path="/board/view/:bno" element={<BoardView />} />
         {/*<Route path="/gallery/list" element={<GalleryList />} />*/}
         <Route path="/member/myinfo" element={<Myinfo />} />
