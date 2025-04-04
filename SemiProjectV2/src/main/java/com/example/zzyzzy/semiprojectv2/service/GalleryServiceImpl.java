@@ -73,6 +73,9 @@ public class GalleryServiceImpl implements GalleryService {
             }catch (Exception e){
                 throw new IllegalStateException("makeThumbnail 오류 발생");
             }
+
+            result = true;
+
         }
 
         return result;
