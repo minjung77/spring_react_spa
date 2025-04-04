@@ -2,6 +2,7 @@ package com.example.zzyzzy.semiprojectv2.service;
 
 import com.example.zzyzzy.semiprojectv2.domain.Gallery;
 import com.example.zzyzzy.semiprojectv2.domain.GalleryImage;
+import com.example.zzyzzy.semiprojectv2.repository.GallaryImageRepository;
 import com.example.zzyzzy.semiprojectv2.repository.GalleryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ import java.util.List;
 public class GalleryServiceImpl implements GalleryService {
 
     private final GalleryRepository galleryMapper;
-    private final GalleryImage galleryImageMapper;
-    private final GalleryUploadService galleryImageMapper;
+    private final GallaryImageRepository galleryImageMapper;
+    private final GalleryUploadService galleryUploadService;
 
 //    @Override
 //    public List<GalleryListDTO> selectGallery() {
