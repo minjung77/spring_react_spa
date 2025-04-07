@@ -1,4 +1,4 @@
-package com.example.zzyzzy.semiprojectv2.service;
+package com.example.zzyzzy.semiprojectv2.utils;
 
 import com.example.zzyzzy.semiprojectv2.domain.GalleryImage;
 import lombok.extern.slf4j.Slf4j;
