@@ -2,17 +2,16 @@ package com.example.zzyzzy.semiprojectv2.controller;
 
 import com.example.zzyzzy.semiprojectv2.domain.Gallery;
 import com.example.zzyzzy.semiprojectv2.domain.Pds;
+import com.example.zzyzzy.semiprojectv2.domain.PdsReplyDTO;
 import com.example.zzyzzy.semiprojectv2.service.GalleryService;
 import com.example.zzyzzy.semiprojectv2.service.PdsService;
 import com.example.zzyzzy.semiprojectv2.utils.GoogleRecaptchaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -38,6 +37,15 @@ public class PdsController {
 //    스프링 부트에서는 @PathVariable
 //    어노테이션을 사용하여 처리
 //    RESTful API 설계에서 자원의 식별자로 사용하기에 적합
+
+
+    @GetMapping("view/{pno}")
+    public ResponseEntity<?> view(@PathVariable int pno){
+        PdsReplyDTO resreply = pdsService.readOnePdsReply(pno);
+
+        return new ResponseEntity<>(resreply, HttpStatus.OK);
+    }
+
 
     @PostMapping("/write")
     public ResponseEntity<?> writeok(Pds pds, List<MultipartFile> panames,

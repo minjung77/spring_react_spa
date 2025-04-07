@@ -31,7 +31,7 @@ public class PdsReply {
     private int ref;
 
     @Column(nullable = false)
-    private int rpno;
+    private int pno;
 
 
 }
