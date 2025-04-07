@@ -1,5 +1,6 @@
 package com.example.zzyzzy.semiprojectv2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,29 +11,27 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="gallerys3")
-@Data @Builder
+@Table(name = "pds_replys3")
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Gallery {
+public class PdsReply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ggno;
+    private Long rno;
     @Column(nullable = false)
-    private String title;
+    private String comments;
     @Column(nullable = false)
     private String userid;
-    @Column(nullable = false)
-    private String simgname;
-    @Column(nullable = false)
-    private String contents;
-
-    @Column(nullable = false)
-    private int thumbs = 0;
-
-    @Column(nullable = false)
-    private int views = 0;
-
     @CreationTimestamp
+    @Column(insertable = false)
     private LocalDateTime regdate;
+    @Column(nullable = false)
+    private int ref;
+
+    @Column(nullable = false)
+    private int rpno;
+
+
 }
