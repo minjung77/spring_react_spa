@@ -14,7 +14,8 @@ import NotFound from "./pages/NotFound";
 import './styles/App.css'
 import BoardView from "./pages/BoardView.jsx";
 import Logout from "./pages/Logout.jsx";
-import PdsWrite from "./pages/PdsWrite.jsx";
+import PdsWrite from "./pages/PdsWrite";
+import PdsView from "./pages/PdsView";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/gallery/write" element={<GalleryWrite />} />
         <Route path="/pds/write" element={<PdsWrite />} />
         <Route path="/board/view/:bno" element={<BoardView />} />
+        <Route path="/pds/view/:pno" element={<PdsView />} />
         {/*<Route path="/gallery/list" element={<GalleryList />} />*/}
         <Route path="/member/myinfo" element={<Myinfo />} />
         <Route path="*" element={<NotFound />} />
