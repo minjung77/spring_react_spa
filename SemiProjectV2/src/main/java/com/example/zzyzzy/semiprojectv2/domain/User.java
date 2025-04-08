@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="users3")
+@Table(name= "users3")
 @Data @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,6 +32,16 @@ public class User {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    //이메일 인증 컬럼(기본 false > 인증이 되면 true)
+    @Column
+    private String enabled = "false";
+
+    @Column
+    private String verifycode;//인증코드(회원가입시 인증코드 발생 > 인증 후 테이블 값 삭제)
+
+    @Column
+    private String role = "USER";
 
     // insert, update시 해당 컬럼 제외
     @CreationTimestamp
