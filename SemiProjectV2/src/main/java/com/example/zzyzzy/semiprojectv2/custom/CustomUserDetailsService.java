@@ -27,6 +27,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         //JPA, MariaDB 를 이용해서 사용자 정보 확인
         User user = userRepository.findByuserid(userid).orElseThrow(()->new UsernameNotFoundException("사용자가 존재하지 않습니다."));
 
+        // 아이디를 받아왔다면 로그인 가능 여부 확인
+        if(!user.getEnabled().equals("true")){//회원가입 시 기본값 false
+            throw new NotEmailVerifyException("이메일 인증을 하세요");
+        }
+
         //인증에 성공하면 userDetails 객체를 초기화하고 반환
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getUserid())

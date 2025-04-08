@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -74,11 +75,12 @@ public class AuthController {
                     "accessToken", jwt
             );
             response = ResponseEntity.ok().body(tokens);
+        }catch (UsernameNotFoundException e){
+            response = ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("아이디가 존재하지 않습니다.");
         }catch(BadCredentialsException e){
             response = ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("아이디나 비밀번호를 확인하세요");
-            log.info(e.getMessage());
         } catch (Exception e) {
-            log.info(e.getMessage());
+            response = ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("이메일 인증을 하자 않았습니다.");
         }
 
         return response;
