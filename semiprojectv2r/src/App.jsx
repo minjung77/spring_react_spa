@@ -12,10 +12,11 @@ import BoardWrite from "./pages/BoardWrite";
 import GalleryWrite from "./pages/GallaryWrite";
 import NotFound from "./pages/NotFound";
 import './styles/App.css'
-import BoardView from "./pages/BoardView.jsx";
-import Logout from "./pages/Logout.jsx";
+import BoardView from "./pages/BoardView";
+import Logout from "./pages/Logout";
 import PdsWrite from "./pages/PdsWrite";
 import PdsView from "./pages/PdsView";
+import KakaoOAuthHandler from "./components/KakaoOAuthHandler";
 
 function App() {
 
@@ -38,6 +39,8 @@ function App() {
         {/*<Route path="/gallery/list" element={<GalleryList />} />*/}
         <Route path="/member/myinfo" element={<Myinfo />} />
         <Route path="*" element={<NotFound />} />
+
+        <Route path="/api/oauth/kakao/callback" element={<KakaoOAuthHandler />} />
      </Routes>
      <Footer />
    </Router>
